@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for fultter",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Mayank",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechAvtar/TownerApp-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TechAvtar/TownerApp-backend/issues"
+  },
+  "homepage": "https://github.com/TechAvtar/TownerApp-backend#readme"
+}
