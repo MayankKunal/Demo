@@ -1,9 +1,10 @@
 import express from 'express'
 import mongoose from "mongoose"
+import 'dotenv/config'
 const app=express();
 import { userRouter } from './routes/user.js';
 app.use(express.json());
-mongoose.connect("mongodb+srv://mayank4647:mayank4647@cluster0.le4v6jf.mongodb.net/towner?retryWrites=true&w=majority").then(
+mongoose.connect(process.env.MONGO_URI).then(
     console.log("Databse connected")).
     catch((err) =>{
         console.log(err)

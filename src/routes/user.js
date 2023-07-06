@@ -1,6 +1,6 @@
 import express from "express";
 import { UserModel } from "../models/Users.js";
-
+import bcrypt from 'bcrypt'
 const router=express.Router();
 
 router.post('/register',async(req,res)=>
@@ -16,9 +16,10 @@ router.post('/register',async(req,res)=>
         {
             return res.json({message:"Bussiness Name alredy Exist"});
         }
+        const hasedPassword=await bcrypt.hash(password,10);
         const newUser=new UserModel({businessName,ownerName,ownerMobileNo,
             vehicalNo,ownerCumDriver,
-            driverMobileNo,password,referralCode,
+            driverMobileNo,password:hasedPassword,referralCode,
             ownerCode,
             channnelPartnerCode});
             await newUser.save();
