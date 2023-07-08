@@ -25,4 +25,21 @@ router.post('/register',async(req,res)=>
             await newUser.save();
             res.json({message:"UserRegistered Successfully"});
 })
+router.post('/ownerlogin',async(req,res)=>
+{
+    
+    const {ownerMobileNo,password}=req.body;
+    const user=await UserModel.findOne({ownerMobileNo});
+    if(!user)
+    {
+        return res.json({message:"User Does not exist"});
+    }
+    const isValid=await bcrypt.compare(password,user.password);
+    if(!isValid)
+    {
+        return res.json({message:"username or password is incorrect!"});
+    }
+    res.json({user:user._id});
+
+})
 export {router as userRouter};
