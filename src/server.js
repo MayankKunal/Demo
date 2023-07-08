@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from "mongoose"
+
 import cors from 'cors'
 import 'dotenv/config'
 const app=express();
@@ -7,11 +8,21 @@ import { userRouter } from './routes/user.js';
 import { notificationRouter } from './routes/notification.js';
 app.use(express.json());
 app.use(cors());
-mongoose.connect(process.env.MONGO_URI).then(
-    console.log("Databse connected")).
-    catch((err) =>{
-        console.log(err)
-    })
+// const { MongoClient } = require('mongodb');
+
+// const uri = process.env.MONGO_URI 
+mongoose.connect(process.env.MONGO_URI , {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log('Connected to MongoDB');
+    // Perform database operations
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB', error);
+  });
+
 
 app.get('/',(req,res)=>
 {
