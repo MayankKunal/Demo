@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 import moment from 'moment-timezone'
 const NotificationSchema = new mongoose.Schema({
+  userId:{
+    type: String,
+ required:true
+  },
   heading: {
     type: String,
     required: true,

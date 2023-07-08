@@ -7,12 +7,12 @@ const router=express.Router();
 
 // console.log(formattedDate); // Output: 2023-07-08 12:34:56 (IST)
 
-router.post('/', async (req, res) => {
+router.post('/:userId', async (req, res) => {
     try {
       const { heading, description } = req.body;
-  
+           const {userId}=req.params;
       // Create a new notification document
-      const newnotification = new NotificationModel({ heading, description });
+      const newnotification = new NotificationModel({userId,heading, description });
   
       // Save the document to the database
       await newnotification.save();
@@ -22,22 +22,24 @@ router.post('/', async (req, res) => {
       res.status(500).json(err);
     }
   });
-  router.get('/',async(req,res)=>
+  router.get('/:userId/',async(req,res)=>
   {
+    const {userId}=req.params;
     try{
-        let notifications=await NotificationModel.find().sort({"createdAt": -1});
+
+        let notifications=await NotificationModel.find({userId}).sort({"createdAt": -1});
         return res.send(notifications);
     }
     catch(error){
         res.send(error);
     }
   })
-  router.delete('/:id', async (req, res) => {
+  router.delete('/:userId/:id', async (req, res) => {
     try {
-      const { id } = req.params;
-  
+      const {userId} = req.params;
+      const {id}=req.params;
       // Find the notification by ID and remove it
-      const notification = await NotificationModel.findByIdAndRemove(id);
+      const notification = await NotificationModel.findOneAndDelete({ userId, _id: id });
   
       if (!notification) {
         return res.status(404).json({ error: 'Notification not found' });
