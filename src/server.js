@@ -6,23 +6,31 @@ import 'dotenv/config'
 const app=express();
 import { userRouter } from './routes/user.js';
 import { notificationRouter } from './routes/notification.js';
+import { businessRouter } from './routes/business.js';
 app.use(express.json());
 app.use(cors());
 // const { MongoClient } = require('mongodb');
 
 // const uri = process.env.MONGO_URI 
-mongoose.connect(process.env.MONGO_URI , {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => {
-    console.log('Connected to MongoDB');
-    // Perform database operations
-  })
-  .catch((error) => {
-    console.error('Error connecting to MongoDB', error);
-  });
 
+async function connectToDatabase() {
+  // MongoDB connection string
+  const connectionString =  process.env.MONGO_URI;
+
+  try {
+    // Connect to the database
+    await mongoose.connect(connectionString, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log("Connected to MongoDB!");
+  } catch (error) {
+    console.error("Connection error:", error);
+  }
+}
+
+connectToDatabase();
 
 app.get('/',(req,res)=>
 {
@@ -30,6 +38,7 @@ app.get('/',(req,res)=>
 });
 app.use('/auth',userRouter);
 app.use('/notification',notificationRouter)
+app.use('/business',businessRouter);
 const PORT=process.env.port||4000;
 app.listen(PORT,()=>
 {

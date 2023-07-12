@@ -25,6 +25,24 @@ router.post('/register',async(req,res)=>
             await newUser.save();
             res.json({message:"UserRegistered Successfully"});
 })
+router.get('/userinfo',async(req,res)=>
+{
+    try{
+        
+        const user=await UserModel.find({});
+      if(user)
+      {
+        
+      res.status(200).json(user);
+      }
+      else{
+        res.status(404).json({message:"User Not Found"})
+      }
+    }
+    catch (err){
+      res.status(500).json(err);
+    }
+})
 router.post('/ownerlogin',async(req,res)=>
 {
     
