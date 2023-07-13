@@ -7,6 +7,8 @@ const app=express();
 import { userRouter } from './routes/user.js';
 import { notificationRouter } from './routes/notification.js';
 import { businessRouter } from './routes/business.js';
+import { rcOwnerRouter } from './routes/rcOwner.js';
+import { driverProfileRouter } from './routes/driverProfile.js';
 app.use(express.json());
 app.use(cors());
 // const { MongoClient } = require('mongodb');
@@ -39,6 +41,8 @@ app.get('/',(req,res)=>
 app.use('/auth',userRouter);
 app.use('/notification',notificationRouter)
 app.use('/business',businessRouter);
+app.use('/rcOwner',rcOwnerRouter);
+app.use('/diverProfile',driverProfileRouter);
 const PORT=process.env.port||4000;
 app.listen(PORT,()=>
 {
