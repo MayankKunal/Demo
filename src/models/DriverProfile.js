@@ -2,16 +2,13 @@ import mongoose from 'mongoose';
 const DriverSchema=new mongoose.Schema({
     userId:{
         type: String,
-     required:true
       },
     driverName:{
         type:String,
-        required:true,
-      
     },
-    driverPhoneNumber:{
+    driverMobileNo:{
         type:String,
-        required:true
+         
     },
     driverPhoto:{
         type:Buffer,
@@ -19,14 +16,40 @@ const DriverSchema=new mongoose.Schema({
      },
     driverAssociatedVehicalNumber:{
         type:String,
-        required:true,
+         
      
     },
-    aadhar:{
+    driverAadharNo:{
         type:String,
-        required:true
+         
     },
-    
+    driverPassword:{
+        type:String,
+    },
+    drivingLicenceNo:{
+        type:String,
+    },
+    drivingLicenceValidity:{
+        type:String,
+    },
+    badgeNo:{
+        type:String,
+    },
+    badgeValidity:{
+        type:String
+    },
+    fatherName:{
+        type:String
+    },
+    dateOfBirth:{
+        type:String
+    },
+    stateandRto:{
+        type:String
+    },
+    drivingLicenceImage:{
+        data: Buffer, contentType: String
+    }
     
 })
 export const DriverModel=mongoose.model("driverProfile",DriverSchema);

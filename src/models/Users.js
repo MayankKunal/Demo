@@ -21,11 +21,7 @@ const UserSchema=new mongoose.Schema({
         type:Boolean,
         default:false
     },
-    driverMobileNo:{
-        type:String,
-        required:true
-    },
-    password:{
+    ownerPassword:{
         type:String,
         required:true,
     },
@@ -42,4 +38,4 @@ const UserSchema=new mongoose.Schema({
     }
     
 })
-export const UserModel=mongoose.model("users",UserSchema);
+export const UserModel=mongoose.model("ownerData",UserSchema);

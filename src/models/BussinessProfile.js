@@ -6,19 +6,49 @@ const BusinessSchema=new mongoose.Schema({
       },
     businessName:{
         type:String,
-        required:true,
-        unique:true
     },
     ownerName:{
         type:String,
-        required:true
+        
     },
-    image:{
+    ownerImage:{
        type:Buffer,
-       default:"default_image",
-       
-
-    }
+    },
+    ownerMobileNo:{
+        type:String,
+        
+      
+    },
+    gstNumber:{
+        type:String,
+        
+    },  
+    businessOwnerAdhar:{
+        type:String,
+    
+    },
+    panNumber:{
+        type:String,
+        
+    },
+    ownerCumDriver:{
+        type:Boolean,
+        
+    },
+    leasedVehical:{
+        type:Boolean,
+    },
+    fleetOwner:{
+        type:Boolean,
+    },
+    channelPartner:{
+        type:Boolean,
+    },
+    agreedSaasContactAgreement:{
+        type:Boolean,
+    },
+    
+    
     
     
 })
