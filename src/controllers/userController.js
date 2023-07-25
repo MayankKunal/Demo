@@ -63,6 +63,9 @@ const ownerLogin = async (req, res) => {
   const { ownerMobileNo, password } = req.body;
 
   try {
+     if(!ownerMobileNo){
+      return res.json(404).send("User Not found");
+     }
     const user = await userService.findUserByOwnerMobileNo(ownerMobileNo);
 
     if (!user) {

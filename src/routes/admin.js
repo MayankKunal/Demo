@@ -1,5 +1,5 @@
 import express from "express";
-import { getAdminData,updateAdmin,deleteAdmin,adminRegister} from "../controllers/adminController";
+import { getAdminData,updateAdmin,deleteAdmin,adminRegister} from "../controllers/adminController.js";
 const router=express.Router();
 
 

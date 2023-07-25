@@ -1,32 +1,18 @@
 import mongoose from "mongoose";
-import moment from 'moment-timezone'
 const NotificationSchema = new mongoose.Schema({
-  userId:{
-    type: String,
- required:true
-  },
-  heading: {
-    type: String,
-    required: true,
-  },
+  
   description: {
     type: String,
     required: true,
   },
-  
-  createdAt: {
-    type: Date,
-    default: function () {
-      return moment().tz('Asia/Kolkata').toDate();
-    },
+  type:{
+    type:String,
+    required:true,
   },
-  updatedAt: {
-    type: Date,
-    default: function () {
-      return moment().tz('Asia/Kolkata').toDate();
-    },
-  },
-},
-{ timestamps: true }
+  field:{
+    type:String,
+    required:true
+  }
+}
 );
 export const NotificationModel = mongoose.model('Notification', NotificationSchema);

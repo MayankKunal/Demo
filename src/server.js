@@ -6,13 +6,7 @@ import multer from "multer"
 import cors from 'cors'
 import 'dotenv/config'
 const app=express();
-// import { userRouter } from './routes/user.js';
-// import { userRouter } from './controllers/user.controller.js';
-// import {router} from './controllers/user.controller.js';
-// import { userRouter } from './controllers/user.controller.js';
-// import { userRouter } from './controllers/user.controller.js';
 import { userRouter } from './routes/user.js';
-import { notificationRouter } from './routes/notification.js';
 //Owner Routes
 import { businessRouter } from './routes/business.js';
 import { rcOwnerRouter } from './routes/rcOwner.js';
@@ -32,6 +26,18 @@ import { accountDetailRouter } from './routes/accountDetail.js';
 
 //admin detail
 import { adminRouter } from './routes/admin.js';
+
+//Plans
+
+import { planRouter } from './routes/plan.js';
+
+//FAQS
+import { faqRouter } from "./routes/faqs.js";
+//Tickets
+import { ticketRouter } from './routes/ticket.js';
+
+//notification
+import { notificationRouter } from './routes/notification.js';
 
 app.use(express.json());
 app.use(cors());
@@ -80,7 +86,18 @@ app.use('/vehicalEmission',vehicalEmissionRouter);
 app.use('/vehicalTax',vehicalStateandRtoRouter);
 //account Routes
 app.use('/accountDetail',accountDetailRouter);
+//admin Routes
 app.use("/admin",adminRouter);
+
+//Plan Routes
+app.use("/plan",planRouter);
+//faqs Routes
+app.use("/faqs",faqRouter);
+//
+app.use("/ticket",ticketRouter);
+//
+app.use("/notification",notificationRouter);
+
 const PORT=process.env.port||4000;
 app.listen(PORT,()=>
 {
