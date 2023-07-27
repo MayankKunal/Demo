@@ -20,7 +20,12 @@ const PlanSchema=new mongoose.Schema({
     planDuration:{
         type:String,
         required:true,
-    },
+    }
     
-})
+    
+},
+{
+    timestamps: true
+  }
+)
 export const PlanModel=mongoose.model("Plans",PlanSchema);

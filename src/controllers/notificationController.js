@@ -25,10 +25,14 @@ export const getNotificationById=async(req,res)=>
     try{
 
         let notification=await findNotificationById({notificationId})
-        return res.send(notification);
+        if(notification)
+        return res.status(200).send(notification);
+        else{
+          return res.status(404).send({message:"Notification Not Found"});
+        }
     }
     catch(error){
-        res.send(error);
+        res.status(500).send(error);
     }
   }
 export const getAllNotification=async (req, res) => {
