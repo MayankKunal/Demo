@@ -1,13 +1,15 @@
 // routes/userRoutes.js
 import express from "express";
 
-import { setTicket,getAllTickets,getTicketByUser,getticketById} from "../controllers/ticketsController.js";
+import { setTicket,getAllTickets,getticketById,getticketByUser} from "../controllers/ticketsController.js";
 
 const router = express.Router();
 
 router.post('/:userId', setTicket);
 router.get('/', getAllTickets);
+
 router.get('/:ticketId', getticketById);
-router.get('/:userId',getTicketByUser);
+
+router.get("/user/:userId",getticketByUser);
 
 export { router as ticketRouter};

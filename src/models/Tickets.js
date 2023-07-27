@@ -4,7 +4,6 @@ const TicketSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-
     initiatedDate:{
         type:Date,
         default:Date.now,

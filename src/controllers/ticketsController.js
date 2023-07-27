@@ -1,5 +1,5 @@
 
-import { createTicket, findTicketById, findTicketByUserId,getAllTicket} from "../services/ticketService.js";
+import { createTicket, findTicketById,getAllTicket, getTicketByUserId} from "../services/ticketService.js";
 
 export const setTicket=async(req,res)=>
 {
@@ -13,33 +13,44 @@ export const setTicket=async(req,res)=>
 }
 export const getticketById=async(req,res)=>
 {
-  const {TicketId}=req.params;
+  
  
   try{
+    const {ticketId}=req.params;
 
-      let Tickets=await findTicketById({TicketId});
-      return res.send(Tickets);
-  }
-  catch(error){
-      res.send(error);
-  }
-}
-export const getTicketByUser=async(req,res)=>
-{
-  const {userId}=req.params;
- 
-  try{
-
-      let Ticket=await findTicketByUserId({userId});
+      let Ticket=await findTicketById({ticketId});
       if(Ticket)
-      return res.status(203).send(Ticket);
+      return res.status(200).send(Ticket);
       else
-       return res.status(404).send("Tickets Not Found");
+       return res.status(404).send("Ticket Not Found");
   }
   catch(error){
-      res.send(error);
+      res.status(500).send(error);
   }
 }
+
+export const getticketByUser=async(req,res)=>
+{
+  
+ 
+  try{
+    const {userId}=req.params;
+
+      let Ticket=await getTicketByUserId({userId});
+      if(Ticket)
+      return res.status(200).send(Ticket);
+      else
+       return res.status(404).send("Ticket Not Found");
+  }
+  catch(error){
+      res.status(500).send(error);
+  }
+}
+
+
+
+
+
 export const getAllTickets=async(req,res)=>
 {
   
